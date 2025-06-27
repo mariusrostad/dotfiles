@@ -7,7 +7,7 @@ vim.keymap.set('n', '<C-j>', '<C-w>j', { desc = 'Jump panel down' })
 vim.keymap.set('n', '<C-k>', '<C-w>k', { desc = 'Jump panel up' })
 vim.keymap.set('n', '<C-l>', '<C-w>l', { desc = 'Jump panel right' })
 
-vim.keymap.set('n', '<C-e>', '<Cmd>Neotree toggle<CR>', { desc = 'Neotree toggle' })
+-- vim.keymap.set('n', '<C-e>', '<Cmd>Neotree toggle<CR>', { desc = 'Neotree toggle' })
 vim.keymap.set('n', '<C-s>', '<Cmd>write<CR>', { desc = 'Save' })
 vim.keymap.set('n', '<leader>fs', '<Cmd>write<CR>', { desc = '[F]ile Save' })
 
@@ -67,9 +67,9 @@ return {
     'catppuccin/nvim',
     name = 'catppuccin',
     config = true,
-    init = function()
-      vim.cmd.colorscheme 'catppuccin'
-    end,
+    -- init = function()
+    --   vim.cmd.colorscheme 'catppuccin'
+    -- end,
     priority = 1000,
   },
   {
@@ -78,6 +78,13 @@ return {
     config = true,
     -- init = function()
     --   vim.cmd.colorscheme 'gruvbox'
+    -- end,
+  },
+  {
+    'Mofiqul/vscode.nvim',
+    priority = 1000,
+    -- init = function()
+    --   vim.cmd.colorscheme 'vscode'
     -- end,
   },
 }
