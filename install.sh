@@ -26,6 +26,17 @@ brew tap FelixKratz/formulae
 ### Must Have things
 brew install zsh-autosuggestions
 brew install zsh-syntax-highlighting
+brew install stow
+brew install fzf
+brew install bat
+brew install fd
+brew install zoxide
+brew install lua
+brew install luajit
+brew install luarocks
+brew install prettier
+brew install make
+brew install ripgrep
 
 ### Terminal
 brew install git
@@ -71,6 +82,6 @@ cd $HOME/dotfiles || exit
 
 # Stow dotfiles packages
 echo "Stowing dotfiles..."
-stow -t ~ aerospace karabiner neovim starship wezterm tmux zsh
+stow -t ~ starship zsh
 
 echo "Dotfiles setup complete!"
