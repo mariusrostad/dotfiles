@@ -50,7 +50,7 @@ brew install --cask font-jetbrains-mono-nerd-font
 brew install --cask font-sf-pro
 
 ## Rust
-curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+# curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
 
 ## MacOS settings
 # echo "Changing macOS defaults..."
