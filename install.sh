@@ -26,6 +26,8 @@ brew tap FelixKratz/formulae
 ### Must Have things
 brew install zsh-autosuggestions
 brew install zsh-syntax-highlighting
+brew install atuin
+brew install eza
 brew install stow
 brew install fzf
 brew install bat
