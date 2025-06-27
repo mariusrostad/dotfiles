@@ -29,7 +29,7 @@ cursor-style = block
 cursor-style-blink = false
 cursor-invert-fg-bg = true
 
-macos-titlebar-style = hidden
+macos-titlebar-style = transparent
 macos-option-as-alt = true
 mouse-hide-while-typing = true
 
