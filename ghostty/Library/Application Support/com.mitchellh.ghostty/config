@@ -19,7 +19,8 @@
 
 config-file = themes/rosepine
 background = #000000
-background-opacity = 0.65
+# background = #0c0c0c
+background-opacity = 0.8
 background-blur-radius = 20
 
 font-family = JetBrainsMonoNL Nerd Font 
@@ -32,17 +33,17 @@ macos-titlebar-style = transparent
 # macos-option-as-alt = true
 mouse-hide-while-typing = true
 
-confirm-close-surface = false
-# window-decoration = false
-window-padding-x = 10
-window-padding-y = 10
-window-padding-balance = true
+# confirm-close-surface = false
+window-decoration = auto
+# window-padding-x = 10
+# window-padding-y = 10
+# window-padding-balance = true
 
 # auto-update = check
 # auto-update-channel = stable
 #
 # # extras
-shell-integration-features = no-cursor 
+shell-integration-features = no-cursor
 copy-on-select = clipboard
 #
 # # Custom Keybinds & Config (super represents cmd key on mac)
