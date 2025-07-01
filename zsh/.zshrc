@@ -1,12 +1,23 @@
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 # echo source ~/.bash_profile
 
+# Path to your Oh My Zsh installation.
+export ZSH="$HOME/.oh-my-zsh"
+
 eval "$(brew shellenv)"
 # source .zprofile in all zsh shells (just in case)
 # [[ -f "$HOME/.zprofile" ]] && source "$HOME/.zprofile"
 
 # Themes - See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
 ZSH_THEME="robbyrussell"
+
+# ---------------------------------------
+
+# brew installations activation
+source $(brew --prefix)/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+source $(brew --prefix)/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+#
+# ---------------------------------------
 
 # Uncomment one of the following lines to change the auto-update behavior
 # zstyle ':omz:update' mode disabled  # disable automatic updates
@@ -21,7 +32,7 @@ ZSH_THEME="robbyrussell"
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git zsh-autosuggestions zsh-syntax-highlighting)
+plugins=(git)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -34,10 +45,6 @@ eval "$(zoxide init zsh)"
 
 # FZF
 eval "$(fzf --zsh)"
-
-# FZF with Git right in the shell by Junegunn : check out his github below
-# Keymaps for this is available at https://github.com/junegunn/fzf-git.sh
-source ~/scripts/fzf-git.sh
 
 # Atuin Configs
 eval "$(atuin init zsh)"
@@ -76,8 +83,3 @@ alias lg="lazygit"
 
 # kubectl
 alias k=kubectl
-# ---------------------------------------
-
-# brew installations activation (new mac systems brew path: opt/homebrew , not usr/local )
-source $(brew --prefix)/share/zsh-autosuggestions/zsh-autosuggestions.zsh
-source $(brew --prefix)/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
