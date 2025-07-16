@@ -86,6 +86,6 @@ cd $HOME/dotfiles || exit
 echo "Stowing dotfiles..."
 # Neovim config needs refined first
 # stow -t ~ starship nvim tmux zsh
-stow -t ~ starship tmux zsh
+stow -t ~ starship ghostty tmux zsh nvim
 
 echo "Dotfiles setup complete!"
