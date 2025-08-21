@@ -79,12 +79,27 @@ return {
     -- init = function()
     --   vim.cmd.colorscheme 'gruvbox'
     -- end,
+    config = function()
+      require('gruvbox').setup {
+        transparent_mode = false,
+      }
+    end,
   },
   {
     'Mofiqul/vscode.nvim',
     priority = 1000,
-    -- init = function()
-    --   vim.cmd.colorscheme 'vscode'
-    -- end,
+    init = function()
+      vim.cmd.colorscheme 'vscode'
+    end,
+    config = function()
+      require('vscode').setup {
+        -- Alternatively set style in setup
+        -- style = 'light'
+        -- Enable transparent background
+        transparent = true,
+        -- Apply theme colors to terminal
+        -- terminal_colors = true,
+      }
+    end,
   },
 }
