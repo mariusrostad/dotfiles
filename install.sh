@@ -40,6 +40,10 @@ brew install prettier
 brew install make
 brew install ripgrep
 
+## Download go lang
+curl -fsSL "https://go.dev/dl/go$GO_VERSION.darwin-arm64.pkg" -o "/tmp/go$GO_VERSION.darwin-arm64.pkg"
+sudo installer -pkg "/tmp/${PKG_FILE}" -target /
+
 ### Terminal
 brew install git
 brew install lazygit

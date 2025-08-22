@@ -38,54 +38,6 @@ vim.o.scrolloff = 15
 
 return {
   {
-    'grafana/jsonnet-language-server',
-  },
-  {
-    'github/copilot.vim',
-  },
-  {
-    'akinsho/toggleterm.nvim',
-    version = 'v2.8.0',
-    config = function()
-      require('toggleterm').setup {}
-      local Terminal = require('toggleterm.terminal').Terminal
-      local lazygit = Terminal:new {
-        cmd = 'lazygit',
-        hidden = true,
-        direction = 'float',
-        float_opts = {
-          boarder = 'double',
-        },
-      }
-
-      vim.keymap.set('n', '<leader>gg', function()
-        lazygit:toggle()
-      end, { desc = 'Trouble toggle' })
-    end,
-  },
-  {
-    'catppuccin/nvim',
-    name = 'catppuccin',
-    config = true,
-    -- init = function()
-    --   vim.cmd.colorscheme 'catppuccin'
-    -- end,
-    priority = 1000,
-  },
-  {
-    'ellisonleao/gruvbox.nvim',
-    priority = 1000,
-    config = true,
-    -- init = function()
-    --   vim.cmd.colorscheme 'gruvbox'
-    -- end,
-    config = function()
-      require('gruvbox').setup {
-        transparent_mode = false,
-      }
-    end,
-  },
-  {
     'Mofiqul/vscode.nvim',
     priority = 1000,
     init = function()
