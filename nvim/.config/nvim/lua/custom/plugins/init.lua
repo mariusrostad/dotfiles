@@ -36,22 +36,4 @@ vim.wo.relativenumber = true
 
 vim.o.scrolloff = 15
 
-return {
-  {
-    'Mofiqul/vscode.nvim',
-    priority = 1000,
-    init = function()
-      vim.cmd.colorscheme 'vscode'
-    end,
-    config = function()
-      require('vscode').setup {
-        -- Alternatively set style in setup
-        -- style = 'light'
-        -- Enable transparent background
-        transparent = true,
-        -- Apply theme colors to terminal
-        -- terminal_colors = true,
-      }
-    end,
-  },
-}
+return {}
