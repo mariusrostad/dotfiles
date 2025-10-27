@@ -44,4 +44,7 @@ vim.wo.relativenumber = true
 
 vim.o.scrolloff = 15
 
+vim.opt.cursorline = true
+vim.opt.cursorlineopt = 'number' -- only highlight the line number
+
 return {}
