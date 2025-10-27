@@ -89,3 +89,15 @@ export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
 . "$HOME/.cargo/env"
+
+# pipx ensurepath
+
+# Created by `pipx` on 2025-09-01 18:27:17
+# export PATH="$PATH:/Users/mariusrostad/.local/bin"
+
+# bun completions
+[ -s "/Users/mariusrostad/.bun/_bun" ] && source "/Users/mariusrostad/.bun/_bun"
+
+# bun
+export BUN_INSTALL="$HOME/.bun"
+export PATH="$BUN_INSTALL/bin:$PATH"
