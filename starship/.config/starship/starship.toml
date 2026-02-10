@@ -175,9 +175,9 @@ detect_files = ["go.mod"]
 symbol = ""
 format = '[[ $symbol( $version) ]]($style)'
 
-[java]
-symbol = " "
-format = '[[ $symbol( $version) ]]($style)'
+# [java]
+# symbol = " "
+# format = '[[ $symbol( $version) ]]($style)'
 
 [kotlin]
 symbol = ""
