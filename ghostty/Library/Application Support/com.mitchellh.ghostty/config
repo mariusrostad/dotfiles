@@ -19,10 +19,11 @@
 
 # config-file = themes/rosepine
 # theme = github-dark-high-contrast
-theme = Vercel
+# theme = Vercel
+config-file = themes/cyberdream
 background = #000000
 # background = #0c0c0c
-background-opacity = 0.80
+background-opacity = 0.90
 # background-opacity = 1
 background-blur-radius = 20
 
@@ -48,12 +49,21 @@ window-decoration = auto
 # # extras
 shell-integration-features = no-cursor
 copy-on-select = clipboard
+# keybind = global:option+backtick=toggle_quick_terminal
 #
 # # Custom Keybinds & Config (super represents cmd key on mac)
 # # For Simple Keybinds
 # # keybind = super+r=reload_config 
 # keybind = super+i=inspector:toggle
-# keybind = super+b>,=toggle_quick_terminal
+
+# Keybindings
+keybind = global:option+space=toggle_quick_terminal
+
+# Quick terminal settings
+quick-terminal-size = 100%,100%
+quick-terminal-screen = main
+quick-terminal-position = bottom
+
 #
 # # Similar Tmux but with Ghostty
 # # (ctrl b for tmux -> cmb b for ghostty)
