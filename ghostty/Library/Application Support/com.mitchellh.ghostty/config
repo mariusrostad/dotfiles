@@ -23,7 +23,7 @@ theme = Vercel
 # config-file = themes/cyberdream
 background = #000000
 # background = #0c0c0c
-background-opacity = 0.75
+background-opacity = 0.85
 # background-opacity = 1
 background-blur-radius = 20
 
