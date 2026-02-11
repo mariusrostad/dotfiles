@@ -1,6 +1,5 @@
 return {
   'akinsho/toggleterm.nvim',
-  version = 'v2.8.0',
   config = function()
     require('toggleterm').setup {}
     local Terminal = require('toggleterm.terminal').Terminal

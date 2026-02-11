@@ -19,32 +19,12 @@ vim.diagnostic.config {
   },
 }
 
--- Trouble settings
-vim.keymap.set('n', '<leader>xx', function()
-  require('trouble').toggle()
-end, { desc = 'Trouble toggle' })
-vim.keymap.set('n', '<leader>xw', function()
-  require('trouble').toggle 'workspace_diagnostics'
-end, { desc = 'Trouble workspace_diagnostics' })
-vim.keymap.set('n', '<leader>xd', function()
-  require('trouble').toggle 'document_diagnostics'
-end, { desc = 'Trouble document_diagnostics' })
-vim.keymap.set('n', '<leader>xq', function()
-  require('trouble').toggle 'quickfix'
-end, { desc = 'Trouble quickfix' })
-vim.keymap.set('n', '<leader>xl', function()
-  require('trouble').toggle 'loclist'
-end, { desc = 'Trouble loclist' })
-vim.keymap.set('n', 'gR', function()
-  require('trouble').toggle 'lsp_references'
-end, { desc = 'Trouble lsp_references' })
-
-vim.wo.number = true
-vim.wo.relativenumber = true
+vim.o.number = true
+vim.o.relativenumber = true
 
 vim.o.scrolloff = 15
 
-vim.opt.cursorline = true
-vim.opt.cursorlineopt = 'number' -- only highlight the line number
+vim.o.cursorline = true
+vim.o.cursorlineopt = 'number' -- only highlight the line number
 
 return {}
