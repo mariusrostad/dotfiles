@@ -27,4 +27,6 @@ vim.o.scrolloff = 15
 vim.o.cursorline = true
 vim.o.cursorlineopt = 'number' -- only highlight the line number
 
+vim.keymap.set('n', '<leader>df', vim.diagnostic.open_float, { desc = 'Open diagnostics [D]iagnostic list' })
+
 return {}
