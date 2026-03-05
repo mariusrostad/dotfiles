@@ -56,7 +56,6 @@ brew install borders
 
 ### dev things
 brew install node
-brew install nvm
 
 ## Casks
 brew install --cask betterdisplay
@@ -88,8 +87,9 @@ cd $HOME/dotfiles || exit
 
 # Stow dotfiles packages
 echo "Stowing dotfiles..."
-# Neovim config needs refined first
-# stow -t ~ starship nvim tmux zsh
 stow -t ~ starship ghostty tmux zsh nvim
+
+sudo cp ./n/n /usr/local/bin/n
+mkdir $HOME/.n/
 
 echo "Dotfiles setup complete!"
