@@ -67,6 +67,7 @@ ZSH_THEME="robbyrussell"
 plugins=()
 
 source $ZSH/oh-my-zsh.sh
+# source $(brew --prefix)/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 
 # User configuration
 
@@ -121,6 +122,9 @@ export VISUAL=nvim
 
 # N (Basically nvm just smaller and better)
 export N_PREFIX="$HOME/.n"
+
+# Bun
+export PATH="$HOME/.bun/bin:$PATH"
 
 ## Aliases
 alias vim="nvim"
