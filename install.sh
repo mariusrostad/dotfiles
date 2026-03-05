@@ -27,9 +27,9 @@ brew tap FelixKratz/formulae
 brew install zsh-autosuggestions
 brew install zsh-syntax-highlighting
 brew install atuin
-brew install eza
-brew install stow
-brew install fzf
+brew install eza # Bedre ls
+brew install stow # Linking fra dotfiles til config plasseringer
+brew install fzf # Fuzzy find
 brew install bat
 brew install fd
 brew install zoxide
