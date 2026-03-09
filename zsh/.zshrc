@@ -131,3 +131,6 @@ alias vim="nvim"
 alias ls="eza --no-filesize --long --color=always --icons=always"
 alias lg="lazygit"
 alias k=kubectl
+alias gwa="git worktree add"
+alias gwl="git worktree list"
+alias gwr="git worktree remove"
