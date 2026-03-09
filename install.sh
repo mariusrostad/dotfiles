@@ -89,7 +89,6 @@ cd $HOME/dotfiles || exit
 echo "Stowing dotfiles..."
 stow -t ~ starship ghostty tmux zsh nvim
 
-sudo cp ./n/n /usr/local/bin/n
-mkdir $HOME/.n/
+sudo cp ./n/n /usr/local/bin/n && mkdir $HOME/.n/
 
 echo "Dotfiles setup complete!"
