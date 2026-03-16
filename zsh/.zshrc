@@ -117,6 +117,8 @@ bindkey '^r' atuin-search-viins  # Ctrl-r starts Atuin in Insert mode
 export EDITOR=nvim
 export VISUAL=nvim
 
+eval "$(brew shellenv)"
+
 # Rust
 . "$HOME/.cargo/env"
 
@@ -141,3 +143,16 @@ alias gwr="git worktree remove"
 # bun
 export BUN_INSTALL="$HOME/.bun"
 export PATH="$BUN_INSTALL/bin:$PATH"
+
+ocd() {
+    if ! podman exec opencode curl -sf http://127.0.0.1:4096/global/health >/dev/null 2>&1; then
+        echo "Starting opencode server..."
+        podman exec -d opencode opencode serve --port 4096 --hostname 127.0.0.1
+        for i in $(seq 1 30); do
+            podman exec opencode curl -sf http://127.0.0.1:4096/global/health >/dev/null 2>&1 && break
+            sleep 0.5
+        done
+    fi
+
+    podman exec -it opencode opencode attach http://127.0.0.1:4096 "$@"
+}
