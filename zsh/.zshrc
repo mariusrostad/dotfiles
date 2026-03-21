@@ -156,3 +156,6 @@ ocd() {
 
     podman exec -it opencode opencode attach http://127.0.0.1:4096 "$@"
 }
+
+export CLAUDE_DIR="~/repos/worktree/"
+export APP_ENV="local"
