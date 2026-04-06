@@ -595,6 +595,9 @@ require('lazy').setup({
       --  Feel free to add/remove any LSPs that you want here. They will automatically be installed.
       --  See `:help lsp-config` for information about keys and how to configure
       local servers = {
+        ocamllsp = {
+          manual_install = true,
+        },
         -- clangd = {},
         -- gopls = {},
         -- pyright = {},
@@ -614,7 +617,16 @@ require('lazy').setup({
       --    :Mason
       --
       -- You can press `g?` for help in this menu.
-      local ensure_installed = vim.tbl_keys(servers or {})
+      -- local ensure_installed = vim.tbl_keys(servers or {})
+      local ensure_installed = vim.tbl_filter(function(key)
+        local t = servers[key]
+        if type(t) == 'table' then
+          return not t.manual_install
+        else
+          return t
+        end
+      end, vim.tbl_keys(servers))
+
       vim.list_extend(ensure_installed, {
         'lua_ls', -- Lua Language server
         'stylua', -- Used to format Lua code
@@ -862,10 +874,11 @@ require('lazy').setup({
   { -- Highlight, edit, and navigate code
     'nvim-treesitter/nvim-treesitter',
     build = ':TSUpdate',
-    main = 'nvim-treesitter.configs', -- Sets main module to use for opts
+    -- main = 'nvim-treesitter.configs', -- Sets main module to use for opts
+    branch = 'main',
     -- [[ Configure Treesitter ]] See `:help nvim-treesitter`
     opts = {
-      ensure_installed = { 'bash', 'c', 'diff', 'html', 'lua', 'luadoc', 'markdown', 'markdown_inline', 'query', 'vim', 'vimdoc', 'kotlin' },
+      ensure_installed = { 'bash', 'c', 'diff', 'html', 'lua', 'luadoc', 'markdown', 'markdown_inline', 'ocaml', 'query', 'vim', 'vimdoc', 'kotlin' },
       -- Autoinstall languages that are not installed
       auto_install = true,
       highlight = {
