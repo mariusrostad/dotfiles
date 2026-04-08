@@ -3,6 +3,7 @@ fzf --fish | source
 atuin init fish | source
 
 abbr -a '^r' atuin-search-viins  # Ctrl-r starts Atuin in Insert mode
+abbr -a lg lazygit
 
 # rustup shell setup
 if not contains "$HOME/.cargo/bin" $PATH
