@@ -2,6 +2,11 @@ zoxide init fish | source
 fzf --fish | source
 atuin init fish | source
 
+# Load environment variables
+for line in (cat ~/global.env | grep -v '^#' | grep -v '^\s*$')
+    set -x (string split -m1 '=' -- $line)
+end
+
 abbr -a '^r' atuin-search-viins  # Ctrl-r starts Atuin in Insert mode
 abbr -a lg lazygit
 
