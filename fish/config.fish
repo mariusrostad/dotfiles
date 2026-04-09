@@ -2,19 +2,21 @@ zoxide init fish | source
 fzf --fish | source
 atuin init fish | source
 
-# Load environment variables
-for line in (cat ~/global.env | grep -v '^#' | grep -v '^\s*$')
-    set -x (string split -m1 '=' -- $line)
-end
-
 abbr -a '^r' atuin-search-viins  # Ctrl-r starts Atuin in Insert mode
 abbr -a lg lazygit
+
+# Load local config
+# if test -f ~/.local/env.fish
+# end
+source ~/.local/env.fish
 
 # rustup shell setup
 if not contains "$HOME/.cargo/bin" $PATH
     # Prepending path in case a system-installed rustc needs to be overridden
     set -x PATH "$HOME/.cargo/bin" $PATH
 end
+
+set -x PATH "$HOME/.bun/bin" $PATH
 
 if status is-interactive
 # Commands to run in interactive sessions can go here
