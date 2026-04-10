@@ -595,19 +595,37 @@ require('lazy').setup({
       --  Feel free to add/remove any LSPs that you want here. They will automatically be installed.
       --  See `:help lsp-config` for information about keys and how to configure
       local servers = {
-        ocamllsp = {
-          manual_install = true,
-        },
-        -- clangd = {},
-        -- gopls = {},
-        -- pyright = {},
-        -- rust_analyzer = {},
-        --
         -- Some languages (like typescript) have entire language plugins that can be useful:
         --    https://github.com/pmizio/typescript-tools.nvim
         --
-        -- But for many setups, the LSP (`ts_ls`) will work just fine
-        -- ts_ls = {},
+        -- But for many setups, the LSP (`tsserver`) will work just fine
+        ansiblels = {},
+        clangd = {},
+        gopls = {},
+        rust_analyzer = {},
+        html = {},
+        cssls = {},
+        jsonls = {},
+        elmls = {},
+        jsonnet_ls = {},
+        kotlin_language_server = {},
+        -- ktlint = {},
+        sqlls = {},
+        terraformls = {},
+        tflint = {},
+        ocamllsp = {
+          manual_install = true,
+        },
+
+        lua_ls = {
+          settings = {
+            Lua = {
+              completion = {
+                callSnippet = 'Replace',
+              },
+            },
+          },
+        },
       }
 
       -- Ensure the servers and tools above are installed
