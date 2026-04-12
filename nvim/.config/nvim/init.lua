@@ -615,6 +615,18 @@ require('lazy').setup({
         tflint = {},
         ocamllsp = {
           manual_install = true,
+          -- cmd = { "dune", "tools", "exec", "ocamllsp" },
+          -- cmd = { "dune", "exec", "ocamllsp" },
+          cmd = { 'ocamllsp' },
+          settings = {
+            codelens = { enable = true },
+            inlayHints = { enable = true },
+            syntaxDocumentation = { enable = true },
+          },
+
+          server_capabilities = { semanticTokensProvider = false },
+
+          -- TODO: Check if i still need the filtypes stuff i had before
         },
 
         lua_ls = {
