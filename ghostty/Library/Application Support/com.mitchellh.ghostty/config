@@ -1,5 +1,5 @@
 ### Current config
-# shell-integration = zsh
+shell-integration = fish
 # window-colorspace = display-p3
 # window-theme = dark
 # window-new-tab-position = end
@@ -10,7 +10,8 @@
 # cursor-text = #f7f7f7
 # cursor-invert-fg-bg = true
 
-# theme = dark:github-dark-high-contrast,light:github-light-high-contrast
+# theme = Catppuccin Latte
+theme = dark:GitHub Dark Default,light:GitHub Light Default
 # background-blur-radius = 20
 # mouse-hide-while-typing = true
 # background-opacity = 0.9
@@ -19,26 +20,26 @@
 
 # config-file = themes/rosepine
 # theme = github-dark-high-contrast
-theme = Vercel
+# theme = Vercel
 # config-file = themes/cyberdream
-background = #000000
+# background = #000000
 # background = #0c0c0c
-background-opacity = 0.95
+# background-opacity = 0.95
 # background-opacity = 1
-background-blur-radius = 20
+# background-blur-radius = 20
 
-font-family = JetBrainsMonoNL Nerd Font 
-font-size = 14
+# font-family = JetBrainsMonoNL Nerd Font 
+# font-size = 14
 cursor-style = block
 cursor-style-blink = false
-cursor-invert-fg-bg = true
+# cursor-invert-fg-bg = true
 
-macos-titlebar-style = tabs
+# macos-titlebar-style = tabs
 # macos-option-as-alt = true
-mouse-hide-while-typing = true
+# mouse-hide-while-typing = true
 
 # confirm-close-surface = false
-window-decoration = auto
+# window-decoration = auto
 # window-padding-x = 10
 # window-padding-y = 10
 # window-padding-balance = true
@@ -47,7 +48,7 @@ window-decoration = auto
 # auto-update-channel = stable
 #
 # # extras
-shell-integration-features = no-cursor
+# shell-integration-features = no-cursor
 copy-on-select = clipboard
 # keybind = global:option+backtick=toggle_quick_terminal
 #
