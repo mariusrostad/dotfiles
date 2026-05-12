@@ -4,6 +4,7 @@ atuin init fish | source
 
 abbr -a '^r' atuin-search-viins  # Ctrl-r starts Atuin in Insert mode
 abbr -a lg lazygit
+abbr -a emacs "emacs -nw"
 
 # Load local config
 # if test -f ~/.local/env.fish
