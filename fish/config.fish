@@ -18,18 +18,18 @@ end
 
 set -x PATH "$HOME/.bun/bin" $PATH
 
-if status is-interactive
-# Commands to run in interactive sessions can go here
-	switch $TERM
-		case 'linux'
-			:
-		case '*'
-			if ! set -q TMUX
-				# ensure that the new tmux _also_ starts fish
-				exec tmux set-option -g default-shell (which fish) ';' new-session
-			end
-	end
-end
+# if status is-interactive
+# # Commands to run in interactive sessions can go here
+# 	switch $TERM
+# 		case 'linux'
+# 			:
+# 		case '*'
+# 			if ! set -q TMUX
+# 				# ensure that the new tmux _also_ starts fish
+# 				exec tmux set-option -g default-shell (which fish) ';' new-session
+# 			end
+# 	end
+# end
 
 if command -v eza > /dev/null
 	abbr -a l 'eza'
