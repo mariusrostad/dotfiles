@@ -17,6 +17,11 @@ if not contains "$HOME/.cargo/bin" $PATH
     set -x PATH "$HOME/.cargo/bin" $PATH
 end
 
+# doom emacs
+if not contains "$HOME/.emacs.d/bin" $PATH
+    set -x PATH "$HOME/.emacs.d/bin" $PATH
+end
+
 set -x PATH "$HOME/.bun/bin" $PATH
 
 # if status is-interactive
