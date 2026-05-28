@@ -159,7 +159,7 @@ Generate **dynamic sections** based on what the interview revealed. Do NOT use a
 
 ### Output
 
-Write the spec as a markdown file to `/mnt/user-data/outputs/<spec-name>.md` and present it via the `present_files` tool so the user can download it.
+Write the spec as a markdown file to `scratchpads/<feature>/<spec-name>.md` and present it via the `present_files` tool so the user can download it.
 
 ### Split Specs
 

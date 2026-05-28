@@ -18,7 +18,7 @@
 
 ### 3. Self-Improvement Loop
 
-- After ANY correction from the user: update `tasks/lessons.md` with the pattern
+- After ANY correction from the user: update `scratchpads/<feature>/tasks/lessons.md` with the pattern
 - Write rules that prevent the same mistake from recurring
 - Ruthlessly iterate on these lessons until mistake rate drops
 - Review lessons at session start for relevant context
@@ -48,12 +48,12 @@
 
 ## Task Management
 
-1. **Plan First**: Write plan to `tasks/todo.md` with checkable items
+1. **Plan First**: Write plan to `scratchpads/<feature>/tasks/todo.md` with checkable items
 2. **Verify Plan**: Check in before starting implementation
 3. **Track Progress**: Mark items complete as you go
 4. **Explain Changes**: High-level summary at each step
-5. **Document Results**: Add review section to `tasks/todo.md`
-6. **Capture Lessons**: Update `tasks/lessons.md` after corrections
+5. **Document Results**: Add review section to `scratchpads/<feature>/tasks/todo.md`
+6. **Capture Lessons**: Update `scratchpads/<feature>/tasks/lessons.md` after corrections
 
 ---
 

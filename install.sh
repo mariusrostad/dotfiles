@@ -28,17 +28,6 @@ brew install neovim
 brew install tree-sitter
 brew install tree
 
-### For historical reasons
-# brew install lua
-# brew install luajit
-# brew install luarocks
-# brew install prettier
-# brew install starship
-# brew install borders
-# brew install zsh-autosuggestions
-# brew install zsh-syntax-highlighting
-# brew install node
-
 ## Casks
 brew install --cask betterdisplay
 brew install --cask linearmouse
