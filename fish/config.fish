@@ -23,6 +23,7 @@ if not contains "$HOME/.emacs.d/bin" $PATH
 end
 
 set -x PATH "$HOME/.bun/bin" $PATH
+set -x PATH "$HOME/.local/bin" $PATH
 
 # if status is-interactive
 # # Commands to run in interactive sessions can go here
