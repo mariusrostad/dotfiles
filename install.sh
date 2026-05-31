@@ -59,6 +59,7 @@ EOF
      tmux       →  ~/.config/tmux/
      nvim       →  ~/.config/nvim/
      claude     →  ~/.claude/
+     codex      →  ~/.codex/
      fish       →  ~/.config/fish/
 
 5. OpenCode (interactive)
@@ -158,6 +159,14 @@ collect_n_steps() {
   fi
 }
 
+remove_empty_codex_placeholder() {
+  local codex_agents="$HOME/.codex/AGENTS.md"
+
+  if [[ -f "$codex_agents" && ! -s "$codex_agents" && ! -L "$codex_agents" ]]; then
+    rm "$codex_agents"
+  fi
+}
+
 print_post_install() {
   if [[ ${#POST_INSTALL[@]} -eq 0 ]]; then
     return
@@ -179,9 +188,10 @@ echo "Installing packages from Brewfile..."
 brew bundle --file="$DOTFILES_DIR/Brewfile"
 
 collect_fish_shell_steps
+remove_empty_codex_placeholder
 
 echo "Stowing dotfiles..."
-stow -t ~ starship ghostty tmux nvim claude
+stow -t ~ starship ghostty tmux nvim claude codex
 stow -t ~/.config/fish fish
 
 read -r -p "Install OpenCode config (~/.config/opencode)? [y/N] " INSTALL_OPENCODE

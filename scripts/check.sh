@@ -15,7 +15,7 @@ run() {
 }
 
 if command -v stow >/dev/null 2>&1; then
-  for pkg in starship ghostty tmux nvim claude opencode; do
+  for pkg in starship ghostty tmux nvim claude codex opencode; do
     if [[ -d "$DOTFILES_DIR/$pkg" ]]; then
       run stow -n -t ~ "$pkg"
     fi
