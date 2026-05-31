@@ -52,7 +52,9 @@ EOF
   cat <<'EOF'
 
 4. Config symlinks (GNU Stow)
-   Links these packages into your home directory:
+   Links each package individually. Each package is checked with a dry run
+   first; when Stow reports a conflict, you can skip it or override it with
+   --adopt. Adopting may update files in this dotfiles repository.
 
      starship   →  ~/.config/starship/
      ghostty    →  ~/Library/Application Support/com.mitchellh.ghostty/
@@ -69,7 +71,7 @@ EOF
    May suggest commands you can run yourself when ready:
      • Add fish to /etc/shells (sudo)
      • chsh to fish as your login shell
-     • Copy the Node version manager script to /usr/local/bin/n (sudo)
+     • Install the Node version manager script to /usr/local/bin/n (sudo)
 
 Not installed by this script
 ────────────────────────────
@@ -87,7 +89,7 @@ for arg in "$@"; do
       ;;
     *)
       echo "Unknown option: $arg" >&2
-      echo "Run: install.sh --help" >&2
+      echo "Run: ./install.sh --help" >&2
       exit 1
       ;;
   esac
@@ -152,19 +154,49 @@ collect_fish_shell_steps() {
   fi
 }
 
-collect_n_steps() {
-  mkdir -p "$HOME/.n"
-  if [[ ! -f /usr/local/bin/n ]] || ! cmp -s "$DOTFILES_DIR/n/n" /usr/local/bin/n 2>/dev/null; then
-    add_post_install "sudo cp \"$DOTFILES_DIR/n/n\" /usr/local/bin/n"
+target_display_path() {
+  local path="$1"
+
+  if [[ "$path" == "$HOME" ]]; then
+    printf "%s" "~"
+  elif [[ "$path" == "$HOME/"* ]]; then
+    printf "%s/%s" "~" "${path#"$HOME/"}"
+  else
+    printf "%s" "$path"
   fi
 }
 
-remove_empty_codex_placeholder() {
-  local codex_agents="$HOME/.codex/AGENTS.md"
+stow_program() {
+  local package="$1"
+  local target_dir="$2"
+  local dry_run_output
+  local answer
+  local target_label
 
-  if [[ -f "$codex_agents" && ! -s "$codex_agents" && ! -L "$codex_agents" ]]; then
-    rm "$codex_agents"
+  target_label="$(target_display_path "$target_dir")"
+  mkdir -p "$target_dir"
+
+  if dry_run_output="$(stow -n -d "$DOTFILES_DIR" -t "$target_dir" "$package" 2>&1)"; then
+    stow -d "$DOTFILES_DIR" -t "$target_dir" "$package"
+    echo "Stowed $package -> $target_label."
+    return
   fi
+
+  echo ""
+  echo "Stow reported conflicts for $package -> $target_label:"
+  printf '%s\n' "$dry_run_output"
+  read -r -p "Override conflicts for $package with stow --adopt? [y/N] " answer
+
+  case "$answer" in
+    y|Y|yes|YES)
+      stow --adopt -d "$DOTFILES_DIR" -t "$target_dir" "$package"
+      echo "Adopted and stowed $package -> $target_label."
+      echo "Review adopted changes with: git diff"
+      ;;
+    *)
+      echo "Skipped stow of $package; existing files were left untouched."
+      ;;
+  esac
 }
 
 print_post_install() {
@@ -188,24 +220,26 @@ echo "Installing packages from Brewfile..."
 brew bundle --file="$DOTFILES_DIR/Brewfile"
 
 collect_fish_shell_steps
-remove_empty_codex_placeholder
+add_post_install "sudo cp \"$DOTFILES_DIR/n/n\" /usr/local/bin/n"
 
 echo "Stowing dotfiles..."
-stow -t ~ starship ghostty tmux nvim claude codex
-stow -t ~/.config/fish fish
+stow_program starship "$HOME"
+stow_program ghostty "$HOME"
+stow_program tmux "$HOME"
+stow_program nvim "$HOME"
+stow_program claude "$HOME"
+stow_program codex "$HOME"
+stow_program fish "$HOME/.config/fish"
 
 read -r -p "Install OpenCode config (~/.config/opencode)? [y/N] " INSTALL_OPENCODE
 case "${INSTALL_OPENCODE}" in
   y|Y|yes|YES)
-    stow -t ~ opencode
-    echo "OpenCode config stowed."
+    stow_program opencode "$HOME"
     ;;
   *)
     echo "Skipping OpenCode config."
     ;;
 esac
-
-collect_n_steps
 
 echo "Dotfiles setup complete!"
 echo "Optional: stow zsh with: stow -t ~ zsh"
