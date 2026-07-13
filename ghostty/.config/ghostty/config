@@ -19,10 +19,10 @@ macos-titlebar-style = tabs
 mouse-hide-while-typing = true
 
 confirm-close-surface = true
-window-decoration = auto
-window-padding-x = 10
-window-padding-y = 10
-window-padding-balance = true
+# window-decoration = auto
+# window-padding-x = 10
+# window-padding-y = 10
+# window-padding-balance = true
 
 auto-update = check
 auto-update-channel = stable
