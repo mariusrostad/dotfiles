@@ -1,0 +1,33 @@
+# By default Reload config with shft + cmd + ,
+
+config-file = themes/tokyonight
+background-opacity = 0.88
+background-blur-radius = 25
+
+font-family = JetBrainsMonoNL Nerd Font
+# font-size = 20
+font-feature = -liga,-calt,-dlig
+cursor-style = block
+cursor-style-blink = false
+cursor-color = cell-foreground
+cursor-text = cell-background
+unfocused-split-opacity = 0.55
+split-divider-color = #524f67
+
+macos-titlebar-style = tabs
+# macos-option-as-alt = true
+mouse-hide-while-typing = true
+
+confirm-close-surface = true
+window-decoration = auto
+window-padding-x = 10
+window-padding-y = 10
+window-padding-balance = true
+
+auto-update = check
+auto-update-channel = stable
+
+# extras
+shell-integration = fish
+shell-integration-features = no-cursor
+copy-on-select = clipboard
