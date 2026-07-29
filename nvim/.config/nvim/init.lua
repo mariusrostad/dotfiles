@@ -573,6 +573,11 @@ require('lazy').setup({
             })
           end
 
+          if client and client.name == 'kotlin_language_server' then
+            client.server_capabilities.documentFormattingProvider = false
+            client.server_capabilities.documentRangeFormattingProvider = false
+          end
+
           -- The following code creates a keymap to toggle inlay hints in your
           -- code, if the language server you are using supports them
           --
