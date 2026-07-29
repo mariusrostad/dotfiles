@@ -20,7 +20,6 @@ brew "tree"
 
 # macOS apps & fonts
 cask "betterdisplay"
-cask "linearmouse"
 cask "font-hack-nerd-font"
 cask "font-jetbrains-mono-nerd-font"
 cask "font-sf-pro"
