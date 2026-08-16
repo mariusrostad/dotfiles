@@ -30,7 +30,6 @@ vim.schedule(function() vim.o.clipboard = 'unnamedplus' end)
 -------------------------------------------------------------------------------
 -- Keymaps
 -------------------------------------------------------------------------------
-
 -- Write and quit
 vim.keymap.set("n", "<leader>fs", ":w<cr>", { silent = true })
 -- vim.keymap.set("n", "<leader>q", ":q<cr>", { silent = true })
@@ -101,9 +100,55 @@ vim.api.nvim_create_autocmd('TextYankPost', {
 })
 
 -------------------------------------------------------------------------------
+-- Packs / Plugins
+-------------------------------------------------------------------------------
+
+---Because most plugins are hosted on GitHub, you can use the helper
+---function to have less repetition in the following sections.
+---@param repo string
+---@return string
+local function gh(repo) return 'https://github.com/' .. repo end
+
+-- Still
+vim.pack.add { gh 'NMAC427/guess-indent.nvim' }
+require('guess-indent').setup {}
+
+-- Here is a more advanced configuration example that passes options to `gitsigns.nvim`
+--
+-- See `:help gitsigns` to understand what each configuration key does.
+-- Adds git related signs to the gutter, as well as utilities for managing changes
+vim.pack.add { gh 'lewis6991/gitsigns.nvim' }
+require('gitsigns').setup {
+  signs = {
+    add = { text = '+' }, ---@diagnostic disable-line: missing-fields
+    change = { text = '~' }, ---@diagnostic disable-line: missing-fields
+    delete = { text = '_' }, ---@diagnostic disable-line: missing-fields
+    topdelete = { text = '‾' }, ---@diagnostic disable-line: missing-fields
+    changedelete = { text = '~' }, ---@diagnostic disable-line: missing-fields
+  },
+}
+
+-- Repo with many themes
+vim.pack.add { gh 'wincent/base16-nvim' }
+
+-- [[ mini.nvim ]]
+--  A collection of various small independent plugins/modules
+vim.pack.add { gh 'nvim-mini/mini.nvim' }
+
+-- If a nerd font is available, load the icons module for pretty icons in various plugins.
+if vim.g.have_nerd_font then
+  require('mini.icons').setup()
+  -- Used for backwards compatibility with plugins that require `nvim-web-devicons` (e.g. telescope.nvim)
+  MiniIcons.mock_nvim_web_devicons()
+end
+
+-------------------------------------------------------------------------------
 -- Colorscheme
 -------------------------------------------------------------------------------
-vim.cmd.colorscheme("catppuccin")
+-- Coming from base16-nvim!
+vim.cmd.colorscheme('gruvbox-dark-hard')
+
+-- Removes the background. Resulting in using the terminal background.
 -- vim.api.nvim_set_hl(0, "Normal", { bg = "none" })
 
 -------------------------------------------------------------------------------
