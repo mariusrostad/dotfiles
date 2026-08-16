@@ -154,7 +154,7 @@ vim.cmd.colorscheme('gruvbox-dark-hard')
 -------------------------------------------------------------------------------
 -- LSP
 -------------------------------------------------------------------------------
-vim.lsp.enable({ "lua_ls", "tsgo" })
+vim.lsp.enable({ "lua_ls", "tsgo", "rust_analyzer" })
 vim.diagnostic.config({ virtual_text = true, virtual_lines = false })
 
 -- Make the popup behave like a plugin-based completion menu
