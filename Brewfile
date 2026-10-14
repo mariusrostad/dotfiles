@@ -9,6 +9,7 @@ brew "zoxide"
 brew "make"
 brew "ripgrep"
 brew "fish"
+brew "git-delta"
 
 # Terminal / dev
 brew "git"
