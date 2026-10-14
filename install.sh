@@ -229,6 +229,7 @@ stow_program tmux "$HOME"
 stow_program nvim "$HOME"
 stow_program claude "$HOME"
 stow_program codex "$HOME"
+stow_program gh-dash "$HOME/.config/gh-dash"
 stow_program fish "$HOME/.config/fish"
 
 read -r -p "Install OpenCode config (~/.config/opencode)? [y/N] " INSTALL_OPENCODE
