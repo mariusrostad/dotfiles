@@ -760,7 +760,11 @@ do
     -- clangd = {},
     -- gopls = {},
     -- pyright = {},
-    -- tsc = {},
+    --
+    -- TypeScript/JavaScript: the official native TypeScript 7 language server (`tsc --lsp`).
+    --  Mason installs the `typescript` npm package; a project's own `node_modules/.bin/tsc`
+    --  is preferred when it is TypeScript 7+, otherwise this one (Mason's bin dir is on $PATH).
+    tsc = {},
     --
     -- rust_analyzer is configured below, outside Mason (it comes from rustup).
 
@@ -986,7 +990,7 @@ do
   vim.pack.add { { src = gh 'nvim-treesitter/nvim-treesitter', version = 'main' } }
 
   -- Ensure basic parsers are installed
-  local parsers = { 'bash', 'c', 'diff', 'html', 'lua', 'luadoc', 'markdown', 'markdown_inline', 'query', 'vim', 'vimdoc', 'rust', 'kotlin' }
+  local parsers = { 'bash', 'c', 'diff', 'html', 'lua', 'luadoc', 'markdown', 'markdown_inline', 'query', 'vim', 'vimdoc', 'rust', 'kotlin', 'javascript', 'typescript', 'tsx', 'jsdoc' }
   require('nvim-treesitter').install(parsers)
 
   ---@param buf integer
