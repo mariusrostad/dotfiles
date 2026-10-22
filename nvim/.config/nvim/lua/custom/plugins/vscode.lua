@@ -1,10 +1,7 @@
-return {
-  'Mofiqul/vscode.nvim',
-  -- config = function()
-  --   require('vscode').setup {
-  --     -- style = 'light'
-  --     transparent = true,
-  --     terminal_colors = true,
-  --   }
-  -- end,
-}
+vim.pack.add { 'https://github.com/Mofiqul/vscode.nvim' }
+
+-- require('vscode').setup {
+--   -- style = 'light'
+--   transparent = true,
+--   terminal_colors = true,
+-- }
