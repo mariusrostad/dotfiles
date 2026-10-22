@@ -1,7 +1,1 @@
-return {
-  'catppuccin/nvim',
-  name = 'catppuccin',
-  init = function()
-    vim.cmd.colorscheme 'catppuccin'
-  end,
-}
+vim.pack.add { { src = 'https://github.com/catppuccin/nvim', name = 'catppuccin' } }
