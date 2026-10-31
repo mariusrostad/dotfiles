@@ -21,6 +21,8 @@
         mac-right-option-modifier 'none    ; right Option = normal macOS (for @ $ { } [ ] | \)
         mac-command-modifier 'super))      ; Cmd = Super (keeps Cmd-c/Cmd-v style bindings free)
 
+(fido-vertical-mode 1)   ; vertical candidate list with flex (fuzzy) matching
+
 ;;; --- Package setup ---------------------------------------------------
 
 (require 'package)
