@@ -63,6 +63,7 @@ EOF
      claude     →  ~/.claude/
      codex      →  ~/.codex/
      fish       →  ~/.config/fish/
+     emacs      →  ~/.emacs.d/
 
 5. OpenCode (interactive)
    Prompts whether to stow opencode → ~/.config/opencode/ (default: skip).
@@ -231,6 +232,7 @@ stow_program claude "$HOME"
 stow_program codex "$HOME"
 stow_program gh-dash "$HOME/.config/gh-dash"
 stow_program fish "$HOME/.config/fish"
+stow_program emacs "$HOME/.emacs.d"
 
 read -r -p "Install OpenCode config (~/.config/opencode)? [y/N] " INSTALL_OPENCODE
 case "${INSTALL_OPENCODE}" in

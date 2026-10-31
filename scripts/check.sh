@@ -21,6 +21,7 @@ if command -v stow >/dev/null 2>&1; then
     fi
   done
   run stow -n -t ~/.config/fish fish
+  run stow -n -t ~/.emacs.d emacs
 else
   echo "SKIP: stow not installed" >&2
   errors=$((errors + 1))
