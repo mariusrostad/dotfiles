@@ -1,5 +1,14 @@
 # AGENTS.md
 
+## Global Coding Standards
+
+1. **YAGNI**: Don't build it until you need it
+2. **DRY**: Extract patterns after second duplication, not before
+3. **Fail Fast**: Explicit errors beat silent failures
+4. **Simple First**: Write the obvious solution, optimize only if needed
+5. **Delete Aggressively**: Less code = fewer bugs
+6. **Semantic Naming**: Always name variables, parameters, and API endpoints with verbose, self-documenting names that optimize for comprehension by both humans and LLMs, not brevity (e.g., `wait_until_obs_is_saved=true` vs `wait=true`)
+
 ## Workflow Orchestration
 
 ### 1. Plan Before Acting
@@ -44,23 +53,8 @@
 - Minimize context switching for the user.
 - Fix failing CI tests without being told how.
 
----
-
-## Task Management
-
-1. **Plan First**: Write the plan to `scratchpads/<feature>/tasks/todo.md` with checkable items.
-2. **Verify Plan**: Check in before starting implementation when the work is non-trivial or high-risk.
-3. **Track Progress**: Mark items complete as you go.
-4. **Explain Changes**: Provide a high-level summary at each step.
-5. **Document Results**: Add a review section to `scratchpads/<feature>/tasks/todo.md`.
-6. **Capture Lessons**: Update `scratchpads/<feature>/tasks/lessons.md` after corrections.
-
----
-
 ## Core Principles
 
 Challenge me on the changes and do not make a PR until I pass your tests.
-
 The job is not done until you have proved it works.
-
 After a mediocre fix, say: "Knowing everything you know now, scrap this and implement the elegant solution."
