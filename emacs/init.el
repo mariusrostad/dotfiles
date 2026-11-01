@@ -23,6 +23,7 @@
 
 (fido-vertical-mode 1)   ; vertical candidate list with flex (fuzzy) matching
 
+
 ;;; --- Package setup ---------------------------------------------------
 
 (require 'package)
@@ -59,6 +60,14 @@
   ;; Corrects (and improves) org-mode's native fontification.
   (doom-themes-org-config))
 
+;;; --- System clipboard in terminal Emacs -------------------------------
+;; GUI Emacs already shares the clipboard; in a terminal, route kills/yanks
+;; through pbcopy/pbpaste so Evil's y/p and C-y talk to the macOS clipboard.
+(use-package xclip
+  :ensure t
+  :config
+  (xclip-mode 1))
+
 ;;; --- Rust ------------------------------------------------------------
 
 ;; GUI Emacs started from the Dock doesn't get the shell's PATH,
@@ -88,7 +97,12 @@
 
   (add-to-list 'eglot-server-programs
                '((rust-ts-mode rust-mode) .
-                 ("rust-analyzer" :initializationOptions (:check (:command "clippy"))))))
+                 ("rust-analyzer" :initializationOptions (:check (:command "clippy")))))
+  ;; TypeScript 7's native compiler has a built-in language server
+  (add-to-list 'eglot-server-programs
+               '(((typescript-ts-mode :language-id "typescript")
+                  (tsx-ts-mode :language-id "typescriptreact"))
+                 . ("tsc" "--lsp" "--stdio"))))
 
 ;; Completion popup for the candidates Eglot provides
 (use-package corfu
@@ -97,6 +111,16 @@
   (corfu-auto t)
   :init
   (global-corfu-mode))
+
+;;; --- TypeScript ------------------------------------------------------
+
+;; typescript-ts-mode and tsx-ts-mode ship with Emacs. Enabling them makes
+;; Emacs offer to install the tree-sitter grammar (pinned to a known-good
+;; commit) the first time a .ts/.tsx file is opened.
+(setopt treesit-enabled-modes '(typescript-ts-mode tsx-ts-mode))
+
+;; Start the language server in both .ts and .tsx buffers
+(add-hook 'typescript-ts-base-mode-hook #'eglot-ensure)
 
 ;;; --- File tree -------------------------------------------------------
 
