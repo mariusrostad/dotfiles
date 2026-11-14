@@ -18,12 +18,6 @@
 ;;(ido-ubiquitous-mode 1)
 (global-set-key (kbd "M-x") 'smex)
 
-;; --- Not sure what it does, but it was recommended for mac users in the nordics
-;;(setq mac-option-key-is-meta nil)
-;;(setq mac-command-key-is-meta t)
-;;(setq mac-command-modifier 'meta)
-;;(setq mac-option-modifier nil)
-
 ;; --- Hopefully fixes my issues with Mac + Norwegian meta keys
 (when (eq system-type 'darwin)
   (setq mac-option-modifier 'meta          ; left Option = Meta
