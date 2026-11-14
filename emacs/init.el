@@ -2,12 +2,21 @@
 
 ;;; --- Custom configuration --------------------------------------------
 
+;; So I can use norwegian keyboard layout
+(global-set-key (kbd "≈") 'execute-extended-command)
+
 (add-to-list 'custom-theme-load-path "~/.emacs.d/themes/")
 
 ;; --- Turns on mouse and mouse-scroll
 (unless (display-graphic-p)
   (xterm-mouse-mode 1)
   (mouse-wheel-mode 1))
+
+;; install smex and ido-completing-read+ from MELPA first
+(ido-mode 1)
+(ido-everywhere 1)
+;;(ido-ubiquitous-mode 1)
+(global-set-key (kbd "M-x") 'smex)
 
 ;; --- Not sure what it does, but it was recommended for mac users in the nordics
 ;;(setq mac-option-key-is-meta nil)
