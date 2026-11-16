@@ -74,9 +74,10 @@
 ;;; --- Rust ------------------------------------------------------------
 
 ;; GUI Emacs started from the Dock doesn't get the shell's PATH,
-;; so tell it where cargo, rustfmt and rust-analyzer (all via rustup) live.
+;; so tell it where Homebrew (jdtls, kotlin-lsp, mvn) and rustup (cargo,
+;; rustfmt, rust-analyzer) install binaries. Later entries take precedence.
 (when (eq system-type 'darwin)
-  (let ((dir (expand-file-name "~/.cargo/bin")))
+  (dolist (dir (list "/opt/homebrew/bin" (expand-file-name "~/.cargo/bin")))
     (add-to-list 'exec-path dir)
     (setenv "PATH" (concat dir path-separator (getenv "PATH")))))
 
@@ -95,6 +96,7 @@
 (use-package eglot
   :custom
   (eglot-autoshutdown t)         ; stop rust-analyzer when the last buffer closes
+  (eglot-connect-timeout 120)    ; jdtls/kotlin-lsp are slow on the first Maven import
   :config
   ;; Run clippy instead of `cargo check' (from the rust-analyzer manual)
 
@@ -105,7 +107,10 @@
   (add-to-list 'eglot-server-programs
                '(((typescript-ts-mode :language-id "typescript")
                   (tsx-ts-mode :language-id "typescriptreact"))
-                 . ("tsc" "--lsp" "--stdio"))))
+                 . ("tsc" "--lsp" "--stdio")))
+  ;; JetBrains' official Kotlin server; Eglot's default (fwcd) is deprecated
+  (add-to-list 'eglot-server-programs
+               '((kotlin-ts-mode kotlin-mode) . ("kotlin-lsp" "--stdio"))))
 
 ;; Completion popup for the candidates Eglot provides
 (use-package corfu
@@ -120,10 +125,25 @@
 ;; typescript-ts-mode and tsx-ts-mode ship with Emacs. Enabling them makes
 ;; Emacs offer to install the tree-sitter grammar (pinned to a known-good
 ;; commit) the first time a .ts/.tsx file is opened.
-(setopt treesit-enabled-modes '(typescript-ts-mode tsx-ts-mode))
+(setopt treesit-enabled-modes '(typescript-ts-mode tsx-ts-mode java-ts-mode))
 
 ;; Start the language server in both .ts and .tsx buffers
 (add-hook 'typescript-ts-base-mode-hook #'eglot-ensure)
+
+;;; --- Java ------------------------------------------------------------
+
+;; java-ts-mode ships with Emacs and Eglot starts jdtls for it by default.
+(add-hook 'java-ts-mode-hook #'eglot-ensure)
+
+;;; --- Kotlin ----------------------------------------------------------
+
+(use-package kotlin-ts-mode
+  :ensure t
+  :mode "\\.kts?\\'"
+  :init
+  (add-to-list 'treesit-language-source-alist
+               '(kotlin "https://github.com/fwcd/tree-sitter-kotlin"))
+  :hook (kotlin-ts-mode . eglot-ensure))
 
 ;;; --- File tree -------------------------------------------------------
 
