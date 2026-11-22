@@ -1,3 +1,1 @@
-return {
-  'grafana/jsonnet-language-server',
-}
+vim.pack.add { 'https://github.com/grafana/jsonnet-language-server' }

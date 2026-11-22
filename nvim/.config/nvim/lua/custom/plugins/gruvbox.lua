@@ -1,6 +1,1 @@
-return {
-  'ellisonleao/gruvbox.nvim',
-  init = function()
-    vim.cmd.colorscheme 'gruvbox'
-  end,
-}
+vim.pack.add { 'https://github.com/ellisonleao/gruvbox.nvim' }

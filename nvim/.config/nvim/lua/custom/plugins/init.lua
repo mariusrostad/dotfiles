@@ -1,7 +1,5 @@
--- You can add your own plugins here or in other files in this directory!
---  I promise not to create any merge conflicts in this directory :)
---
--- See the kickstart.nvim README for more information
+-- Loaded from init.lua via `require 'custom.plugins'`.
+-- Options and keymaps live here; each plugin has its own module, required below.
 vim.keymap.set('n', '<C-h>', '<C-w>h', { desc = 'Jump panel left' })
 vim.keymap.set('n', '<C-j>', '<C-w>j', { desc = 'Jump panel down' })
 vim.keymap.set('n', '<C-k>', '<C-w>k', { desc = 'Jump panel up' })
@@ -29,4 +27,21 @@ vim.o.cursorlineopt = 'number' -- only highlight the line number
 
 vim.keymap.set('n', '<leader>df', vim.diagnostic.open_float, { desc = 'Open diagnostics [D]iagnostic list' })
 
-return {}
+-- Order matters: snacks needs to be set up before lualine uses `Snacks`,
+-- and fugitive's <leader>g* maps override snacks'.
+require 'custom.plugins.base16'
+require 'custom.plugins.catpuccin'
+require 'custom.plugins.cyberdream'
+require 'custom.plugins.rosepine'
+require 'custom.plugins.vscode'
+require 'custom.plugins.gruvbox'
+require 'custom.plugins.snacks'
+require 'custom.plugins.lualine'
+require 'custom.plugins.trouble'
+require 'custom.plugins.todo-comments'
+require 'custom.plugins.fugitive'
+require 'custom.plugins.copilot'
+require 'custom.plugins.grafana-lsp'
+
+-- Apply the colorscheme once every theme plugin is installed.
+require 'custom.colorscheme'
