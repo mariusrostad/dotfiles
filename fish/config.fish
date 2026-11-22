@@ -6,21 +6,11 @@ abbr -a '^r' atuin-search-viins  # Ctrl-r starts Atuin in Insert mode
 abbr -a lg lazygit               # Writing "lg" is much nicer
 
 # Load local config
-source ~/.local/env.fish         # Local files that should never be in git
+test -r ~/.local/env.fish; and source ~/.local/env.fish  # Local files that should never be in git
 
-# Add rust to the path if it's not allready setup
-if not contains "$HOME/.cargo/bin" $PATH
-    # Prepending path in case a system-installed rustc needs to be overridden
-    set -x PATH "$HOME/.cargo/bin" $PATH
-end
-
-# doom emacs
-if not contains "$HOME/.emacs.d/bin" $PATH
-    set -x PATH "$HOME/.emacs.d/bin" $PATH
-end
-
-set -x PATH "$HOME/.bun/bin" $PATH
-set -x PATH "$HOME/.local/bin" $PATH
+# Prepended so they override system binaries (e.g. a system rustc).
+# fish_add_path skips entries already in PATH, so nested shells don't pile up duplicates.
+fish_add_path --global ~/.local/bin ~/.bun/bin ~/.emacs.d/bin ~/.cargo/bin
 
 if command -v eza > /dev/null
 	abbr -a l 'eza'
@@ -32,6 +22,3 @@ else
 	abbr -a ll 'ls -l'
 	abbr -a lll 'ls -la'
 end
-
-## OCaml setup
-test -r '~/.opam/opam-init/init.fish' && source '~/.opam/opam-init/init.fish' > /dev/null 2> /dev/null; or true

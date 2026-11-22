@@ -5,9 +5,6 @@
 ;; So I can use norwegian keyboard layout
 (global-set-key (kbd "≈") 'execute-extended-command)
 
-;; Custom themes tracked in dotfiles (emacs/themes/), stowed to ~/.emacs.d/themes
-(add-to-list 'custom-theme-load-path (expand-file-name "themes" user-emacs-directory))
-
 ;; Keep Custom's auto-generated settings out of this version-controlled file
 (setq custom-file (expand-file-name "custom.el" user-emacs-directory))
 (load custom-file 'noerror)
