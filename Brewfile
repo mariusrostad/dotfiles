@@ -10,9 +10,11 @@ brew "make"
 brew "ripgrep"
 brew "fish"
 brew "git-delta"
+brew "starship"
 
 # Terminal / dev
 brew "git"
+brew "gh"
 brew "lazygit"
 brew "neovim"
 brew "emacs"

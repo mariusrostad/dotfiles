@@ -5,7 +5,12 @@
 ;; So I can use norwegian keyboard layout
 (global-set-key (kbd "≈") 'execute-extended-command)
 
-(add-to-list 'custom-theme-load-path "~/.emacs.d/themes/")
+;; Custom themes tracked in dotfiles (emacs/themes/), stowed to ~/.emacs.d/themes
+(add-to-list 'custom-theme-load-path (expand-file-name "themes" user-emacs-directory))
+
+;; Keep Custom's auto-generated settings out of this version-controlled file
+(setq custom-file (expand-file-name "custom.el" user-emacs-directory))
+(load custom-file 'noerror)
 
 ;; --- Turns on mouse and mouse-scroll
 (unless (display-graphic-p)
@@ -24,9 +29,6 @@
         mac-right-option-modifier 'none    ; right Option = normal macOS (for @ $ { } [ ] | \)
         mac-command-modifier 'super))      ; Cmd = Super (keeps Cmd-c/Cmd-v style bindings free)
 
-(fido-vertical-mode 1)   ; vertical candidate list with flex (fuzzy) matching
-
-
 ;;; --- Package setup ---------------------------------------------------
 
 (require 'package)
@@ -37,11 +39,6 @@
 ;; Refresh the package list the first time, if it's empty
 (unless package-archive-contents
   (package-refresh-contents))
-
-;; use-package is built into Emacs 29+. On Emacs 28 or older, install it:
-(unless (package-installed-p 'use-package)
-  (package-install 'use-package))
-(require 'use-package)
 
 (use-package doom-themes
   :ensure t
@@ -54,9 +51,7 @@
 
   ;; Enable flashing mode-line on errors
   (doom-themes-visual-bell-config)
-  ;; Enable custom neotree theme (nerd-icons must be installed!)
-  (doom-themes-neotree-config)
-  ;; Treemacs icons come from treemacs-nerd-icons instead (works in terminal too)
+  ;; Treemacs icons come from treemacs-nerd-icons (works in terminal too)
   ;; Corrects (and improves) org-mode's native fontification.
   (doom-themes-org-config))
 
@@ -68,7 +63,7 @@
   :config
   (xclip-mode 1))
 
-;;; --- Rust ------------------------------------------------------------
+;;; --- PATH for language tools ------------------------------------------
 
 ;; GUI Emacs started from the Dock doesn't get the shell's PATH,
 ;; so tell it where Homebrew (jdtls, kotlin-lsp, mvn) and rustup (cargo,
@@ -77,6 +72,8 @@
   (dolist (dir (list "/opt/homebrew/bin" (expand-file-name "~/.cargo/bin")))
     (add-to-list 'exec-path dir)
     (setenv "PATH" (concat dir path-separator (getenv "PATH")))))
+
+;;; --- Rust ------------------------------------------------------------
 
 (use-package rust-mode
   :ensure t
@@ -352,16 +349,3 @@
 (use-package treemacs-evil
   :ensure t
   :after (treemacs evil))
-
-(custom-set-variables
- ;; custom-set-variables was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(package-selected-packages '(doom-themes rust-mode)))
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- )
