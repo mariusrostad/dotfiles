@@ -1,7 +1,7 @@
 ---
 name: bro
-description: Restate the last message in plain human language, with no jargon.
+description: Re-explain the last message, or whatever the user points at, in plain language with no jargon.
 disable-model-invocation: true
 ---
 
-Restate your last message. Stop using jargon and speak coherently. State it more simply and concisely, like one human talking to another.
+Re-explain your last message, or whatever the user is referring to, in plain language. No jargon. Say it simply and briefly, like one person talking to another.
