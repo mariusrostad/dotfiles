@@ -170,10 +170,18 @@ stow_program() {
   local target_label
 
   target_label="$(target_display_path "$target_dir")"
+
+  # A dangling symlink (e.g. a whole-directory link from an older repo layout)
+  # makes mkdir -p fail. It points nowhere, so removing it loses nothing.
+  if [[ -L "$target_dir" && ! -e "$target_dir" ]]; then
+    echo "Removing dangling symlink $target_label -> $(readlink "$target_dir")"
+    rm "$target_dir"
+  fi
   mkdir -p "$target_dir"
 
-  if dry_run_output="$(stow -n -d "$DOTFILES_DIR" -t "$target_dir" "$package" 2>&1)"; then
-    stow -d "$DOTFILES_DIR" -t "$target_dir" "$package"
+  # -R (restow) also prunes stale links into this repo left by earlier layouts.
+  if dry_run_output="$(stow -R -n -d "$DOTFILES_DIR" -t "$target_dir" "$package" 2>&1)"; then
+    stow -R -d "$DOTFILES_DIR" -t "$target_dir" "$package"
     echo "Stowed $package -> $target_label."
     return
   fi
@@ -185,7 +193,7 @@ stow_program() {
 
   case "$answer" in
     y|Y|yes|YES)
-      stow --adopt -d "$DOTFILES_DIR" -t "$target_dir" "$package"
+      stow -R --adopt -d "$DOTFILES_DIR" -t "$target_dir" "$package"
       echo "Adopted and stowed $package -> $target_label."
       echo "Review adopted changes with: git diff"
       ;;

@@ -1,5 +1,5 @@
-# If you come from bash you might have to change your $PATH.
-# export PATH=$HOME/bin:$HOME/.local/bin:/usr/local/bin:$PATH
+# Keep PATH entries unique so prepends below don't pile up in nested shells.
+typeset -U path PATH
 
 # Path to your Oh My Zsh installation.
 export ZSH="$HOME/.oh-my-zsh"
@@ -123,7 +123,8 @@ eval "$(brew shellenv)"
 . "$HOME/.cargo/env"
 
 # Bun
-export PATH="$HOME/.bun/bin:$PATH"
+export BUN_INSTALL="$HOME/.bun"
+path=("$BUN_INSTALL/bin" $path)
 
 ## Aliases
 alias vim="nvim"
@@ -136,10 +137,6 @@ alias gwr="git worktree remove"
 
 # bun completions
 [ -s "$HOME/.bun/_bun" ] && source "$HOME/.bun/_bun"
-
-# bun
-export BUN_INSTALL="$HOME/.bun"
-export PATH="$BUN_INSTALL/bin:$PATH"
 
 ocd() {
     if ! podman exec opencode curl -sf http://127.0.0.1:4096/global/health >/dev/null 2>&1; then
