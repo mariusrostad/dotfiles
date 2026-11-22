@@ -49,8 +49,6 @@
   ;; Global settings (defaults)
   (doom-themes-enable-bold t)   ; if nil, bold is universally disabled
   (doom-themes-enable-italic t) ; if nil, italics is universally disabled
-  ;; for treemacs users
-  (doom-themes-treemacs-theme "doom-atom") ; use "doom-colors" for less minimal icon theme
   :config
   (load-theme 'doom-1337 t)
 
@@ -58,8 +56,7 @@
   (doom-themes-visual-bell-config)
   ;; Enable custom neotree theme (nerd-icons must be installed!)
   (doom-themes-neotree-config)
-  ;; or for treemacs users
-  (doom-themes-treemacs-config)
+  ;; Treemacs icons come from treemacs-nerd-icons instead (works in terminal too)
   ;; Corrects (and improves) org-mode's native fontification.
   (doom-themes-org-config))
 
@@ -147,7 +144,7 @@
 
 ;;; --- File tree -------------------------------------------------------
 
-;; Icons for the doom-themes treemacs theme ("doom-atom") set above.
+;; Icon font for treemacs-nerd-icons below.
 ;; Uses the Hack Nerd Font that is already installed in ~/Library/Fonts.
 (use-package nerd-icons
   :ensure t
@@ -158,15 +155,35 @@
   :ensure t
   :bind
   (("s-b"   . treemacs)                 ; Cmd-b toggles the tree, like VS Code
-   ("C-c t" . treemacs)                 ; same, but also works in a terminal
-   ("C-c T" . treemacs-select-window))  ; jump to the tree without closing it
+   ("C-c T" . treemacs)                 ; same, but also works in a terminal
+   ("C-c t" . treemacs-select-window))  ; jump to the tree without closing it
   :custom
   (treemacs-width 30)
+  (treemacs-width-is-initially-locked nil)            ; drag the divider to resize
+  (treemacs-collapse-dirs 3)                          ; show src/main/java as one row
+  (treemacs-is-never-other-window t)                  ; C-x o / C-w w skip the tree
+  (windmove-allow-all-windows t)                      ; ...but C-w h/j/k/l can still reach it
+  (treemacs-project-follow-cleanup t)                 ; fold up projects you leave
+  (treemacs-recenter-after-file-follow 'on-distance)  ; keep the current file in view
+  (treemacs-sorting 'alphabetic-case-insensitive-asc) ; README next to readme.txt
+  (treemacs-silent-refresh t)                         ; no "refreshed" messages
+  (treemacs-silent-filewatch t)
   :config
   (treemacs-follow-mode t)              ; highlight the file you're editing
   (treemacs-project-follow-mode t)      ; show the project of the current buffer
   (treemacs-filewatch-mode t)           ; refresh when files change on disk
-  (treemacs-git-mode 'simple))          ; colour files by git status
+  (treemacs-fringe-indicator-mode 'always) ; a bar marking the current line
+  (treemacs-indent-guide-mode t)        ; vertical lines showing nesting
+  (treemacs-git-commit-diff-mode t)     ; "↑2 ↓1" next to the project name
+  (treemacs-hide-gitignored-files-mode t) ; hide target/, node_modules/, ...
+  (treemacs-git-mode 'deferred))        ; colour files and folders by git status (uses python3)
+
+;; Colourful per-filetype icons, in GUI and terminal Emacs alike
+(use-package treemacs-nerd-icons
+  :ensure t
+  :after treemacs
+  :config
+  (treemacs-load-theme "nerd-icons"))
 
 ;;; --- Git -------------------------------------------------------------
 
