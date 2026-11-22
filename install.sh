@@ -52,22 +52,19 @@ EOF
   cat <<'EOF'
 
 4. Config symlinks (GNU Stow)
-   Links each package individually. Each package is checked with a dry run
-   first; when Stow reports a conflict, you can skip it or override it with
-   --adopt. Adopting may update files in this dotfiles repository.
+   Each package folder holds its configuration at its root and is stowed
+   directly into its destination directory. Each package is checked with a
+   dry run first; when Stow reports a conflict, you can skip it or override
+   it with --adopt. Adopting may update files in this dotfiles repository.
 
      starship   →  ~/.config/starship/
-     ghostty    →  ~/Library/Application Support/com.mitchellh.ghostty/
+     ghostty    →  ~/.config/ghostty/
      nvim       →  ~/.config/nvim/
-     claude     →  ~/.claude/
-     codex      →  ~/.codex/
+     gh-dash    →  ~/.config/gh-dash/
      fish       →  ~/.config/fish/
      emacs      →  ~/.emacs.d/
 
-5. OpenCode (interactive)
-   Prompts whether to stow opencode → ~/.config/opencode/ (default: skip).
-
-6. Post-setup reminders (printed, not run automatically)
+5. Post-setup reminders (printed, not run automatically)
    May suggest commands you can run yourself when ready:
      • Add fish to /etc/shells (sudo)
      • chsh to fish as your login shell
@@ -75,7 +72,6 @@ EOF
 Not installed by this script
 ────────────────────────────
   • zsh config — optional: stow -t ~ zsh  (links ~/.zshrc)
-  • OpenCode — only if you answer yes at the prompt
 
 EOF
 }
@@ -221,24 +217,12 @@ brew bundle --file="$DOTFILES_DIR/Brewfile"
 collect_fish_shell_steps
 
 echo "Stowing dotfiles..."
-stow_program starship "$HOME"
-stow_program ghostty "$HOME"
-stow_program nvim "$HOME"
-stow_program claude "$HOME"
-stow_program codex "$HOME"
+stow_program starship "$HOME/.config/starship"
+stow_program ghostty "$HOME/.config/ghostty"
+stow_program nvim "$HOME/.config/nvim"
 stow_program gh-dash "$HOME/.config/gh-dash"
 stow_program fish "$HOME/.config/fish"
 stow_program emacs "$HOME/.emacs.d"
-
-read -r -p "Install OpenCode config (~/.config/opencode)? [y/N] " INSTALL_OPENCODE
-case "${INSTALL_OPENCODE}" in
-  y|Y|yes|YES)
-    stow_program opencode "$HOME"
-    ;;
-  *)
-    echo "Skipping OpenCode config."
-    ;;
-esac
 
 echo "Dotfiles setup complete!"
 echo "Optional: stow zsh with: stow -t ~ zsh"
