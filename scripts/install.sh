@@ -57,7 +57,7 @@ EOF
    dry run first; when Stow reports a conflict, you can skip it or override
    it with --adopt. Adopting may update files in this dotfiles repository.
 
-     starship   →  ~/.config/starship/
+     starship   →  ~/.config/  (starship.toml, starship's default path)
      ghostty    →  ~/.config/ghostty/
      nvim       →  ~/.config/nvim/
      gh-dash    →  ~/.config/gh-dash/
@@ -218,7 +218,7 @@ brew bundle --file="$DOTFILES_DIR/Brewfile"
 collect_fish_shell_steps
 
 echo "Stowing dotfiles..."
-stow_program starship "$HOME/.config/starship"
+stow_program starship "$HOME/.config"
 stow_program ghostty "$HOME/.config/ghostty"
 stow_program nvim "$HOME/.config/nvim"
 stow_program gh-dash "$HOME/.config/gh-dash"
