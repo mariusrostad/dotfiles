@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-DOTFILES_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+DOTFILES_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 
 show_help() {
   local brewfile="$DOTFILES_DIR/Brewfile"
@@ -9,9 +9,9 @@ show_help() {
 install.sh — set up this machine from dotfiles
 
 Usage:
-  install.sh          Run full setup (may prompt for sudo/password)
-  install.sh -h       Show this help
-  install.sh --help   Same as -h
+  scripts/install.sh          Run full setup (may prompt for sudo/password)
+  scripts/install.sh -h       Show this help
+  scripts/install.sh --help   Same as -h
 
 What runs (in order)
 ────────────────────
@@ -72,6 +72,7 @@ EOF
 Not installed by this script
 ────────────────────────────
   • zsh config — optional: stow -t ~ zsh  (links ~/.zshrc)
+  • Agent skills — scripts/install-skills.sh  (claude, pi, copilot, codex, opencode)
 
 EOF
 }
@@ -84,7 +85,7 @@ for arg in "$@"; do
       ;;
     *)
       echo "Unknown option: $arg" >&2
-      echo "Run: ./install.sh --help" >&2
+      echo "Run: ./scripts/install.sh --help" >&2
       exit 1
       ;;
   esac
@@ -226,4 +227,5 @@ stow_program emacs "$HOME/.emacs.d"
 
 echo "Dotfiles setup complete!"
 echo "Optional: stow zsh with: stow -t ~ zsh"
+echo "Optional: install agent skills with: $DOTFILES_DIR/scripts/install-skills.sh"
 print_post_install
