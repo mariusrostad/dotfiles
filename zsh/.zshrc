@@ -122,9 +122,6 @@ eval "$(brew shellenv)"
 # Rust
 . "$HOME/.cargo/env"
 
-# N (Basically nvm just smaller and better)
-export N_PREFIX="$HOME/.n"
-
 # Bun
 export PATH="$HOME/.bun/bin:$PATH"
 

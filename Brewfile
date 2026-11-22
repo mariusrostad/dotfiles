@@ -14,7 +14,6 @@ brew "git-delta"
 # Terminal / dev
 brew "git"
 brew "lazygit"
-brew "tmux"
 brew "neovim"
 brew "emacs"
 brew "tree-sitter"

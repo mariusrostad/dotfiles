@@ -58,7 +58,6 @@ EOF
 
      starship   →  ~/.config/starship/
      ghostty    →  ~/Library/Application Support/com.mitchellh.ghostty/
-     tmux       →  ~/.config/tmux/
      nvim       →  ~/.config/nvim/
      claude     →  ~/.claude/
      codex      →  ~/.codex/
@@ -72,7 +71,6 @@ EOF
    May suggest commands you can run yourself when ready:
      • Add fish to /etc/shells (sudo)
      • chsh to fish as your login shell
-     • Install the Node version manager script to /usr/local/bin/n (sudo)
 
 Not installed by this script
 ────────────────────────────
@@ -221,12 +219,10 @@ echo "Installing packages from Brewfile..."
 brew bundle --file="$DOTFILES_DIR/Brewfile"
 
 collect_fish_shell_steps
-add_post_install "sudo cp \"$DOTFILES_DIR/n/n\" /usr/local/bin/n"
 
 echo "Stowing dotfiles..."
 stow_program starship "$HOME"
 stow_program ghostty "$HOME"
-stow_program tmux "$HOME"
 stow_program nvim "$HOME"
 stow_program claude "$HOME"
 stow_program codex "$HOME"
