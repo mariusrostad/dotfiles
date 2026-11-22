@@ -142,6 +142,13 @@
                '(kotlin "https://github.com/fwcd/tree-sitter-kotlin"))
   :hook (kotlin-ts-mode . eglot-ensure))
 
+;;; --- Bazel -----------------------------------------------------------
+
+;; Major modes for BUILD, WORKSPACE, MODULE.bazel, .bzl and .bazelrc files.
+;; The package registers its own auto-mode-alist entries.
+(use-package bazel
+  :ensure t)
+
 ;;; --- File tree -------------------------------------------------------
 
 ;; Icon font for treemacs-nerd-icons below.
